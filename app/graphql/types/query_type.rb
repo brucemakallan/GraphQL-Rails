@@ -19,5 +19,13 @@ module Types
     def articles
       Article.all
     end
+
+    field :article, Types::ArticleType, null: false do
+      argument :id, ID, required: true
+    end
+
+    def article(id:)
+      Article.find(id)
+    end
   end
 end

@@ -4,6 +4,7 @@
 
 #### The API (example queries)
 
+1. **List all Authors**
 ```
 query allAuthors {
   users {
@@ -24,7 +25,7 @@ query allAuthors {
   }
 }
 ```
-
+*Response*
 ```
 {
   "data": {
@@ -48,6 +49,29 @@ query allAuthors {
         ]
       }
     ]
+  }
+}
+```
+
+2. **Get specific Article image**
+```
+query oneArticle($id: ID!) {
+  article(id: $id) {
+    imageUrl
+  }
+}
+```
+*Variables*
+```
+{ "id": 1 }
+```
+*Response*
+```
+{
+  "data": {
+    "article": {
+      "imageUrl": "http://image.com/image.jpg"
+    }
   }
 }
 ```
