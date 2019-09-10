@@ -1,5 +1,5 @@
 module Types
   class MutationType < Types::BaseObject
-    # TODO add mutations here
+    field :create_user, mutation: Mutations::CreateUser
   end
 end
