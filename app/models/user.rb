@@ -12,7 +12,7 @@ class User < ApplicationRecord
   end
 
   def password=(new_password)
-    raiser(
+    ErrorHandler.raiser(
       !new_password.match(PASSWORD_REGEX).present?,
       "Password must have at least 8 characters and contain a digit, lowercase and uppercase letters"
     )
@@ -21,17 +21,11 @@ class User < ApplicationRecord
   end
 
   def validate
-    raiser(self.first_name.length < 2, 'First name should be at least 2 characters')
-    raiser(self.last_name.length < 2, 'Last name should be at least 2 characters')
-    raiser(!self.email.match(URI::MailTo::EMAIL_REGEXP).present?, 'Invalid Email format')
+    ErrorHandler.raiser(self.first_name.length < 2, 'First name should be at least 2 characters')
+    ErrorHandler.raiser(self.last_name.length < 2, 'Last name should be at least 2 characters')
+    ErrorHandler.raiser(!self.email.match(URI::MailTo::EMAIL_REGEXP).present?, 'Invalid Email format')
     User.all.each do |user|
-      raiser(user.email.match(self.email).present?, 'Email already exists')
-    end
-  end
-
-  def raiser(condition, message)
-    if condition
-      raise GraphQL::ExecutionError, message
+      ErrorHandler.raiser(user.email.match(self.email).present?, 'Email already exists')
     end
   end
 end
