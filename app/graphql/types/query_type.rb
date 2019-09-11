@@ -27,20 +27,5 @@ module Types
     def article(id:)
       Article.find(id)
     end
-
-    field :login, Types::LoginType, null: false do
-      argument :email, String, required: true
-      argument :password, String, required: true
-    end
-
-    def login(email:, password:)
-      user = User.find_by_email(email)
-      if user && user.password == password
-        token = JwtAuthentication.encode(user)
-        { user: user, token: token }
-      else
-        { errors: 'Invalid credentials' }
-      end
-    end
   end
 end
