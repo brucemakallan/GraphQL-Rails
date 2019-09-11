@@ -1,7 +1,7 @@
 module Types
   class LoginType < Types::BaseObject
-    field :user, Types::UserType, null: false
-    field :token, String, null: false
-    field :errors, [String], null: false
+    field :user, Types::UserType, null: true
+    field :token, String, null: true
+    field :errors, String, null: true
   end
 end

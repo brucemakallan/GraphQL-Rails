@@ -4,19 +4,19 @@ class Mutations::CreateUser < Mutations::BaseMutation
   argument :email, String, required: true
   argument :password, String, required: true
 
-  field :user, Types::UserType, null: false
-  field :token, String, null: false
-  field :errors, [String], null: false
+  field :user, Types::UserType, null: true
+  field :token, String, null: true
+  field :errors, [String], null: true
 
   def resolve(first_name:, last_name:, email:, password:)
     user = User.new(first_name: first_name, last_name: last_name, email: email)
     user.password = password
-    user.validate
-    if user.save
+    if user.valid?
+      user.save
       token = JwtAuthentication.encode(user)
-      { user: user, token: token, errors: [] }
+      { user: user, token: token }
     else
-      { user: nil, errors: user.errors.full_messages }
+      { errors: user.errors.full_messages }
     end
   end
 end

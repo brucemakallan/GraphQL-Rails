@@ -37,9 +37,9 @@ module Types
       user = User.find_by_email(email)
       if user && user.password == password
         token = JwtAuthentication.encode(user)
-        { user: user, token: token, errors: [] }
+        { user: user, token: token }
       else
-        { user: nil, token: '', errors: [{ message: 'Invalid credentials' }] }
+        { errors: 'Invalid credentials' }
       end
     end
   end
