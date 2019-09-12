@@ -17,7 +17,7 @@ class JwtAuthentication
       token, Rails.application.secrets.secret_key_base.to_s, true, algorithm: 'HS256'
     )
     HashWithIndifferentAccess.new(body)
-  rescue JWT::ExpiredSignature
+  rescue => e
     nil
   end
 end

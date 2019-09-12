@@ -22,11 +22,7 @@ class JwtDecorder
   end
 
   def current_user
-    user = User.find_by(id: token_contents[:user_id])
+    user = token_contents ? User.find_by(id: token_contents[:user_id]) : nil
     user || (@auth_errors.push('Invalid Token') && nil)
-  end
-
-  def authenticate_user
-    current_user || (raise JWT::DecodeError && nil)
   end
 end
