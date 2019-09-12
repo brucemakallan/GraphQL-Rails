@@ -2,6 +2,11 @@
 
 > Learning GraphQL using the Author's Haven (Blogging website) Ruby on Rails API
 
+#### The LIVE App
+https://authors-haven-rails-graphql.herokuapp.com/graphql
+
+Recommended App: [Insomnia](https://insomnia.rest/)
+
 #### The API (example queries)
 
 1. **List all Authors**
