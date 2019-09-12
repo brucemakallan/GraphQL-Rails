@@ -5,5 +5,7 @@ module Types
     field :login, mutation: Mutations::Login, description: 'Login'
     field :create_article, mutation: Mutations::CreateArticle,
       description: 'Create a new Article'
+    field :update_article, mutation: Mutations::UpdateArticle,
+      description: 'Update an Article'
   end
 end
