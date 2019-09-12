@@ -7,5 +7,7 @@ module Types
       description: 'Create a new Article'
     field :update_article, mutation: Mutations::UpdateArticle,
       description: 'Update an Article'
+    field :delete_article, mutation: Mutations::DeleteArticle,
+      description: 'Delete an Article'
   end
 end
