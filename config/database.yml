@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: graphql_rails_production
-  username: graphql_rails
-  password: <%= ENV['GRAPHQL_RAILS_DATABASE_PASSWORD'] %>
+  # database: graphql_rails_production
+  # username: graphql_rails
+  # password: <%= ENV['GRAPHQL_RAILS_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
